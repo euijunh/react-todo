@@ -1,12 +1,8 @@
 import React, {useState} from "react";
 import TodoInput from "./TodoInput";
-import BackgroundImageList from "../../constants/BackgroundImageList";
 import '../../assets/css/todo.css';
 
 const TodoContainer = () => {
-  const TODOS_KEY = "todos";
-  const chosenImage = BackgroundImageList[Math.floor(Math.random() * BackgroundImageList.length)];
-  document.body.style.backgroundImage = `url("${chosenImage}")`;
   const savedTodos = localStorage.getItem(TODOS_KEY);
   // if(savedTodos) {
   //   const parsedTodos = JSON.parse(savedTodos);
