@@ -5,7 +5,6 @@ import {TODOS_KEY} from "../../constants";
 import '../../assets/css/todo.css';
 
 const TodoContainer = () => {
-  const todoInput = document.querySelector("#todo-input");
   const savedTodos = localStorage.getItem(TODOS_KEY) ? JSON.parse(localStorage.getItem(TODOS_KEY)) : [];
   const [todos, setTodos] = useState(savedTodos);
 
@@ -18,9 +17,9 @@ const TodoContainer = () => {
     e.preventDefault();
     const newTodo = {
       id: Date.now(),
-      txt: todoInput.value
+      txt: e.target[0].value
     }
-    todoInput.value = '';
+    e.target[0].value = '';
     saveTodos([...todos, newTodo]);
   };
 
