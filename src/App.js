@@ -1,11 +1,7 @@
+import Home from './pages/Home';
 import './assets/css/common.css';
 import './App.css';
-import Home from './pages/Home';
 
-const App = () => {
-  return (
-    <Home />
-  );
-}
+const App = () => <Home />;
 
 export default App;
