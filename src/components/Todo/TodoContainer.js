@@ -1,21 +1,39 @@
-import React, {useState} from "react";
+import {useState} from "react";
+import TodoList from "./TodoList";
 import TodoInput from "./TodoInput";
+import {TODOS_KEY} from "../../constants";
 import '../../assets/css/todo.css';
 
 const TodoContainer = () => {
-  const savedTodos = localStorage.getItem(TODOS_KEY);
-  // if(savedTodos) {
-  //   const parsedTodos = JSON.parse(savedTodos);
-  //   todos = parsedTodos;
-  //   parsedTodos.forEach(paintTodo);
-  // }
+  const todoInput = document.querySelector("#todo-input");
+  const savedTodos = localStorage.getItem(TODOS_KEY) ? JSON.parse(localStorage.getItem(TODOS_KEY)) : [];
+  const [todos, setTodos] = useState(savedTodos);
 
-  const [todos, setTodos] = useState([]);
+  const saveTodos = newTodos => {
+    setTodos(newTodos);
+    localStorage.setItem(TODOS_KEY, JSON.stringify(newTodos));
+  };
+
+  const addTodo = e => {
+    e.preventDefault();
+    const newTodo = {
+      id: Date.now(),
+      txt: todoInput.value
+    }
+    todoInput.value = '';
+    saveTodos([...todos, newTodo]);
+  };
+
+  const deleteTodo = id => {
+    const newTodos = todos.filter(todo => todo.id !== +id);
+    saveTodos(newTodos);
+  };
 
   return (
     <div id="todo-container">
       TodoContainer!
-      <TodoInput todos={todos} setTodos={setTodos} TODOS_KEY={TODOS_KEY} />
+      <TodoInput addTodo={addTodo} />
+      <TodoList todos={todos} deleteTodo={deleteTodo} />
     </div>
   )
 }
