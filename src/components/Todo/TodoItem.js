@@ -1,7 +1,7 @@
-const TodoItem = ({todo, deleteTodo}) => {
+const TodoItem = ({todo, setTodos}) => {
   return (
     <li>
-      {todo.txt} <button onClick={() => {deleteTodo(todo.id)}}>❌</button>
+      {todo.txt} <button onClick={() => {setTodos({type: "DELETE", payload: todo.id})}}>❌</button>
     </li>
   )
 }

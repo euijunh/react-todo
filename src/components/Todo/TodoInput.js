@@ -1,6 +1,12 @@
-const TodoInput = ({addTodo}) => {
+const TodoInput = ({setTodos}) => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    setTodos({type: "ADD", payload: e.target[0].value});
+    e.target[0].value = '';
+  };
+
   return (
-    <form id="todo-form" className="item" onSubmit={addTodo}>
+    <form id="todo-form" className="item" onSubmit={handleSubmit}>
       <input type="text" placeholder="Write a To Do and Press Enter" required id="todo-input" />
     </form>
   )
