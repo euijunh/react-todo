@@ -1,4 +1,4 @@
-import {useReducer} from "react";
+import {useImmerReducer} from 'use-immer';
 import TodoList from "./TodoList";
 import TodoInput from "./TodoInput";
 import {TODOS_KEY} from "../../constants";
@@ -10,21 +10,27 @@ const TodoContainer = () => {
   const todosReducer = (todos, action) => {
     const saveTodos = newTodos => {
       localStorage.setItem(TODOS_KEY, JSON.stringify(newTodos));
-      return newTodos;
     };
 
     switch(action.type) {
-      case "ADD" : return saveTodos([...todos, {id: Date.now(), txt: action.payload}]);
+      case "ADD" : {
+        todos.push({id: Date.now(), txt: action.payload})
+        saveTodos(todos);
+        break;
+      }
       case "DELETE" : {
-        const newTodos = todos.filter(todo => todo.id !== +action.payload);
-        return saveTodos(newTodos);
+        const i = todos.findIndex(todo => todo.id === +action.payload);
+        todos.splice(i, 1);
+        saveTodos(todos);
+        break;
+      }
+      default: {
+        throw Error('Unknown action: ' + action.type);
       }
     }
-
-    throw Error('Unknown action: ' + action.type);
   };
 
-  const [todos, todosDispatch] = useReducer(todosReducer, initialTodos);
+  const [todos, todosDispatch] = useImmerReducer(todosReducer, initialTodos);
 
   return (
     <div id="todo-container">
