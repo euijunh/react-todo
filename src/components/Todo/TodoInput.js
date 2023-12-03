@@ -1,7 +1,7 @@
-const TodoInput = ({setTodos}) => {
+const TodoInput = ({todosDispatch}) => {
   const handleSubmit = e => {
     e.preventDefault();
-    setTodos({type: "ADD", payload: e.target[0].value});
+    todosDispatch({type: "ADD", payload: e.target[0].value});
     e.target[0].value = '';
   };
 

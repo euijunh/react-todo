@@ -20,15 +20,17 @@ const TodoContainer = () => {
         return saveTodos(newTodos);
       }
     }
+
+    throw Error('Unknown action: ' + action.type);
   };
 
-  const [todos, dispatch] = useReducer(todosReducer, initialTodos);
+  const [todos, todosDispatch] = useReducer(todosReducer, initialTodos);
 
   return (
     <div id="todo-container">
       TodoContainer!
-      <TodoInput setTodos={dispatch} />
-      <TodoList todos={todos} setTodos={dispatch} />
+      <TodoInput todosDispatch={todosDispatch} />
+      <TodoList todos={todos} todosDispatch={todosDispatch} />
     </div>
   )
 }
