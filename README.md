@@ -2,7 +2,7 @@
 
 - **ToDo List**
   - [X] useState
-  - [X] [useReducer](https://github.com/euijunh/react-todo/commit/494e7b13a6e310a3410dc232ab2db487c95093c8)
+  - [X] [useReducer](https://github.com/euijunh/react-todo/commit/494e7b13a6e310a3410dc232ab2db487c95093c8), [2](https://github.com/euijunh/react-todo/commit/5c7a2195cf4c2af813f6b440640cec77b3bd2481)
     - **useState와 비교**
     - 컴포넌트가(state의 구조가) 복잡해지면 컴포넌트의 state가 업데이트되는 다양한 경우를 한눈에 파악하기 어려워질 수 있는데 useReducer를 사용하면 업데이트 로직이 어떻게 동작 하는지와 이벤트 핸들러를 통해 무엇이 일어났는지 를 깔끔하게 분리할 수 있습니다.
 
