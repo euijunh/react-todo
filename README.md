@@ -9,6 +9,10 @@
     - reducer를 사용한 state 관리는 state를 직접 설정하는 것과 약간 다릅니다. state를 설정하여 React에게 “무엇을 할 지”를 지시하는 대신, 이벤트 핸들러에서 “action”을 전달하여 사용자의 의도를 더 명확하게 “사용자가 방금 한 일”을 지정합니다. (state 업데이트 로직은 다른 곳에 있습니다!)
 
     - [참고1](https://react-ko.dev/reference/react/useReducer), [참고2](https://react-ko.dev/learn/extracting-state-logic-into-a-reducer)
+  - [X] [useImmerReducer](https://github.com/euijunh/react-todo/commit/2d3eb1eb4c86623d52434fa88f62e4d8b7a23214)
+    - 변이 없이 배열과 객체를 업데이트하는 것이 지루하게 느껴진다면 Immer와 같은 라이브러리를 사용하여 반복적인 코드를 줄일 수 있습니다. Immer를 사용하면 객체를 변경하는 것처럼 간결한 코드를 작성할 수 있지만, 내부적으로는 변경 불가능한 업데이트를 수행합니다:
+    - use-immer 패키지는 추가로 useImmerReducer 함수를 제공하는데 이 함수를 사용하면 직접적인 변경을 통한 상태 변경이 가능합니다. 라이브러리 내부적으로 자바스크립트 Proxy를 사용해서 불변한 복사본을 만들어주는 것이죠.
+    - [참고1](https://react-ko.dev/reference/react/useReducer#examples-basic), [참고2](https://react-ko.dev/learn/extracting-state-logic-into-a-reducer#writing-concise-reducers-with-immer), [참고3](https://github.com/immerjs/use-immer#useimmerreducer)
 
 
 
