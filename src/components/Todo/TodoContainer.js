@@ -1,10 +1,13 @@
+import {createContext, useContext} from 'react';
 import {useImmerReducer} from 'use-immer';
 import TodoList from "./TodoList";
 import TodoInput from "./TodoInput";
 import {TODOS_KEY} from "../../constants";
 import '../../assets/css/todo.css';
 
-const TodoContainer = () => {
+const todosDispatchContext = createContext(null);
+
+export const TodoContainer = () => {
   const initialTodos = localStorage.getItem(TODOS_KEY) ? JSON.parse(localStorage.getItem(TODOS_KEY)) : [];
 
   const reducerMap = {
@@ -27,12 +30,14 @@ const TodoContainer = () => {
   const [todos, todosDispatch] = useImmerReducer(todosReducer, initialTodos);
 
   return (
-    <div id="todo-container">
-      TodoContainer!
-      <TodoInput todosDispatch={todosDispatch} />
-      <TodoList todos={todos} todosDispatch={todosDispatch} />
-    </div>
+    <todosDispatchContext.Provider value={todosDispatch}>
+      <div id="todo-container">
+        TodoContainer!
+        <TodoInput todosDispatch={todosDispatch} />
+        <TodoList todos={todos} />
+      </div>
+    </todosDispatchContext.Provider>
   )
 }
 
-export default TodoContainer
+export const useTodosDispatch = () => useContext(todosDispatchContext);

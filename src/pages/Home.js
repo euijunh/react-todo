@@ -1,4 +1,4 @@
-import TodoContainer from "../components/Todo/TodoContainer";
+import {TodoContainer} from "../components/Todo/TodoContainer";
 import {BACKGROUND_IMAGE_LIST} from "../constants";
 
 const Home = () => {
