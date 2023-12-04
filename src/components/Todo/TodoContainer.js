@@ -7,27 +7,21 @@ import '../../assets/css/todo.css';
 const TodoContainer = () => {
   const initialTodos = localStorage.getItem(TODOS_KEY) ? JSON.parse(localStorage.getItem(TODOS_KEY)) : [];
 
-  const todosReducer = (todos, action) => {
-    const saveTodos = newTodos => {
-      localStorage.setItem(TODOS_KEY, JSON.stringify(newTodos));
-    };
-
-    switch(action.type) {
-      case "ADD" : {
-        todos.push({id: Date.now(), txt: action.payload})
-        saveTodos(todos);
-        break;
-      }
-      case "DELETE" : {
-        const i = todos.findIndex(todo => todo.id === +action.payload);
-        todos.splice(i, 1);
-        saveTodos(todos);
-        break;
-      }
-      default: {
-        throw Error('Unknown action: ' + action.type);
-      }
+  const reducerMap = {
+    add: (todos, {payload}) => {
+      todos.push({id: Date.now(), txt: payload})
+      localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
+    },
+    delete: (todos, {payload}) => {
+      const i = todos.findIndex(todo => todo.id === +payload);
+      todos.splice(i, 1);
+      localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
     }
+  };
+
+  const todosReducer = (todos, action) => {
+    if(!reducerMap[action.type]) throw Error('Unknown action: ' + action.type);
+    reducerMap[action.type](todos, action);
   };
 
   const [todos, todosDispatch] = useImmerReducer(todosReducer, initialTodos);
