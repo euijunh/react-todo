@@ -5,7 +5,7 @@ const TodoItem = ({todo}) => {
 
   return (
     <li>
-      {todo.txt} <button onClick={() => {todosDispatch({type: "delete", payload: todo.id})}}>❌</button>
+      {todo.txt} <button onClick={() => {todosDispatch({type: "delete", id: todo.id})}}>❌</button>
     </li>
   )
 }

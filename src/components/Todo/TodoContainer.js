@@ -11,12 +11,12 @@ export const TodoContainer = () => {
   const initialTodos = localStorage.getItem(TODOS_KEY) ? JSON.parse(localStorage.getItem(TODOS_KEY)) : [];
 
   const reducerMap = {
-    add: (todos, {payload}) => {
-      todos.push({id: Date.now(), txt: payload})
+    add: (todos, {txt}) => {
+      todos.push({id: Date.now(), txt: txt})
       localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
     },
-    delete: (todos, {payload}) => {
-      const i = todos.findIndex(todo => todo.id === +payload);
+    delete: (todos, {id}) => {
+      const i = todos.findIndex(todo => todo.id === +id);
       todos.splice(i, 1);
       localStorage.setItem(TODOS_KEY, JSON.stringify(todos));
     }
