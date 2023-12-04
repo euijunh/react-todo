@@ -12,6 +12,9 @@
     - use-immer 패키지는 추가로 useImmerReducer 함수를 제공하는데 이 함수를 사용하면 직접적인 변경을 통한 상태 변경이 가능합니다.
     - 일반 state의 객체와 배열을 변경할 때와 마찬가지로 Immer 라이브러리를 사용해 reducer를 더 간결하게 만들 수 있습니다. 여기서 useImmerReducer를 사용하면 push 또는 arr[i] = 할당으로 state를 변이할 수 있습니다:
     - [참고1](https://react-ko.dev/reference/react/useReducer#examples-basic), [참고2](https://react-ko.dev/learn/extracting-state-logic-into-a-reducer#writing-concise-reducers-with-immer), [참고3](https://github.com/immerjs/use-immer#useimmerreducer)
+  - [X] [useContext](https://github.com/euijunh/react-todo/commit/8bc2260a63060a607328fca8c482e8306a687e9e)
+    - 컨텍스트는 컴포넌트가 프로퍼티를 명시적으로 전달하지 않고도 정보를 깊숙이 전달할 수 있게 해줍니다.
+    - [참고](https://react-ko.dev/reference/react/useContext)
 
 
 
